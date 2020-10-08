@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Header, Icon } from 'semantic-ui-react';
+import { Divider, Header, Icon } from 'semantic-ui-react';
 import { apiBaseUrl } from '../constants';
 import { addPatientDetailsAC, useStateValue } from '../state';
+import Entries from './Entries';
 
 const PatientInfoPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -33,6 +34,7 @@ const PatientInfoPage: React.FC = () => {
     occupation,
     gender,
     ssn,
+    entries,
   } = patientDetails[id];
 
   const genderIcon = () => {
@@ -55,6 +57,8 @@ const PatientInfoPage: React.FC = () => {
       </Header>
       <div>{`ssn: ${ssn}`}</div>
       <div>{`occupation: ${occupation}`}</div>
+      <Divider hidden />
+      <Entries entries={entries}/>
     </div>
   );
 };
