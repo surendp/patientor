@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from 'semantic-ui-react';
 import { Entry } from '../types';
-import DiagnosisCodes from './DiagnosisCodes';
+import EntryDetails from './EntryDetails';
 
 interface EntriesProps {
   entries: Entry[];
@@ -16,16 +16,11 @@ const Entries: React.FC<EntriesProps> = ({ entries }) => {
     <div className="entry">
       <Header as="h2">entries</Header>
       {
-        entries.map(({
-          date,
-          description,
-          diagnosisCodes,
-          id
-        }) => (
-          <div key={id}>
-            <p>{date} {description}</p>
-            <DiagnosisCodes codes={diagnosisCodes} />
-          </div>
+        entries.map(entry => (
+          <EntryDetails
+            key={entry.id}
+            entry={entry}
+          />
         ))
       }
     </div>
